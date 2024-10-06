@@ -1,39 +1,22 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# Name : Mizba Feroz
-# 
-# Student ID : 230585126
 
 # ## Wine quality prediction: White Wine dataset
 # 
 # The task is to implement, describe and present regression and/or
-# classification models of your choice to predict the quality of white wines given a range of
+# classification models to predict the quality of white wines given a range of
 # their features. The goal is to develop regression and/or classification models using any
 # number of the variables provided, which describe wines’ features, to predict their quality
 # (measured as a score from 0 to 10 based on sensory data from three experts).
 
 # **Importing Packages**
 
-# In[1]:
-
-
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 
-
-# In[2]:
-
-
 # Load the dataset
 df = pd.read_csv('winequality-white.csv',sep=';')
 df
-
-
-# In[3]:
-
 
 # Explore the distribution of the target variable 'quality'
 plt.figure(figsize=(8, 5))
@@ -42,10 +25,6 @@ plt.title('Distribution of Wine Quality')
 plt.xlabel('Quality')
 plt.ylabel('Count')
 plt.show()
-
-
-# In[4]:
-
 
 # Examine summary statistics for each feature
 summary_stats = df.describe()
@@ -57,25 +36,14 @@ plt.title('Boxplot of Features in the Dataset')
 plt.xticks(rotation=45, ha='right')
 plt.show()
 
-
-# In[5]:
-
-
 # Display the summary statistics
 print("Summary Statistics for Each Feature:")
 print(summary_stats)
-
-
-# In[6]:
-
 
 # Check for missing values
 missing_values = df.isnull().sum()
 print("Missing Values:")
 print(missing_values)
-
-
-# In[7]:
 
 
 # Visualize outliers in the target variable 'quality'
@@ -86,18 +54,12 @@ plt.xlabel('Quality')
 plt.show()
 
 
-# In[8]:
-
-
 # Visualize the correlation matrix
 correlation_matrix = df.corr()
 plt.figure(figsize=(12, 8))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
 plt.title('Correlation Matrix')
 plt.show()
-
-
-# In[9]:
 
 
 # Extract the correlation values for the target variable, 'quality'
@@ -117,9 +79,6 @@ plt.show()
 
 
 # #### Splitting data into test and train set
-
-# In[10]:
-
 
 # Setting y as target variable, 'quality'
 X = df.drop('quality', axis=1).values
@@ -152,15 +111,6 @@ print("Testing set shape:", X_test.shape, y_test.shape)
 
 # ## Linear Regression
 
-# The normal equation used to calculate the coefficients in linear regression is as follows:
-# $$
-# \mathbf{X}^{\top}\mathbf{X} \hat{\mathbf{W}} = \mathbf{X}^{\top}\mathbf{Y}
-# $$
-# Here $\mathbf{X}$  is the matrix of feature values.
-# and $\mathbf{Y}$ is the vector of target values, while $\hat{\mathbf{W}}$ is the weights/coefficients of the linear regression.
-
-# In[11]:
-
 
 # Adding a column of ones to X_train for the intercept term
 X_train_lr = np.column_stack((np.ones(len(X_train)), X_train))
@@ -177,9 +127,6 @@ print("Intercept:", intercept)
 print("Coefficients:", coefficients)
 
 
-# In[12]:
-
-
 # Adding a column of ones to X_test for the intercept term
 X_test_lr = np.column_stack((np.ones(len(X_test)), X_test))
 
@@ -191,16 +138,6 @@ print("Predicted values on the test data:")
 print(y_test_pred)
 
 
-# Finally the **Mean Squared Error(MSE)** is calculated using the formula,
-# $$
-# \mathrm{MSE} = \frac{1}{2s} \left\|\mathbf{X}\mathbf{W} - \mathbf{Y} \right\|^2,
-# $$
-# where $\mathbf{X}$  is the matrix of feature values.
-# and $\mathbf{Y}$ is the vector of target values, while $\hat{\mathbf{W}}$ is the weights/coefficients of the linear regression.
-
-# In[13]:
-
-
 # Calculate Mean Squared Error (MSE)
 mse = np.mean((y_test - y_test_pred)**2)
 
@@ -208,10 +145,7 @@ mse = np.mean((y_test - y_test_pred)**2)
 print("Mean Squared Error (MSE) on the test data:", mse)
 
 
-# #### Scatter plot to calculate the residuals
-
-# In[14]:
-
+# #### Scatter plot to calculate the residual
 
 # Calculate the residuals (difference between actual and predicted values)
 residuals = y_test - y_test_pred
@@ -228,12 +162,6 @@ plt.show()
 
 
 # ## Ridge regression
-
-# Ridge Regression is a linear regression variant that introduces regularization to prevent overfitting. The objective function for ridge regression is given by ,
-# 
-# $$ W = \frac{1}{2s} \left\| Xw - y \right\|^2 + \frac{\alpha}{2} \left\| w \right\|^2 $$
-
-# In[15]:
 
 
 class RidgeRegression:
@@ -309,14 +237,6 @@ print("Mean Squared Error (MSE) on the test data:", mse)
 
 # ## KNN Regression
 
-# In k-NN regression, the prediction for a new data point is determined by averaging the target values of its k nearest neighbours. For each test point, the Euclidean distance to all training points is calculated by,
-# $$ d(x_1, x_2) = \sqrt{\sum_{i=1}^{n} (x_{1i} - x_{2i})^2} $$
-# 
-# 
-
-# In[16]:
-
-
 # Function to calculate euclidean distance
 def euclidean_distance(x1, x2):
     return np.sqrt(np.sum((x1 - x2)**2))
@@ -357,8 +277,6 @@ print("Mean Squared Error (MSE) on the test data:", mse)
 # ## Using Sci-kit learn
 
 # ### Linear Regression using Sci-kit learn
-
-# In[17]:
 
 
 from sklearn.model_selection import train_test_split
@@ -418,9 +336,6 @@ print(f"Mean Squared Error (MSE) on the test set: {mse}")
 
 # ### k-NN Regression using Sci-kit learn
 
-# In[19]:
-
-
 from sklearn.neighbors import KNeighborsRegressor
 
 # Split the data into training and testing sets
@@ -442,10 +357,3 @@ print(y_test_pred)
 # Calculating Mean Squared Error
 mse = mean_squared_error(y_test, y_test_pred)
 print(f"Mean Squared Error: {mse}")
-
-
-# In[ ]:
-
-
-
-
