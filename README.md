@@ -13,7 +13,7 @@ The models were trained using a combination of the wine features provided in the
 
 ## Formulas Used
 
-## Linear Regression
+### Linear Regression
 
 The normal equation used to calculate the coefficients in linear regression is as follows:
 
@@ -29,13 +29,13 @@ $$ \mathrm{MSE} = \frac{1}{2s} \left\|\mathbf{X}\mathbf{W} - \mathbf{Y} \right\|
 where $\mathbf{X}$  is the matrix of feature values.
 and $\mathbf{Y}$ is the vector of target values, while $\hat{\mathbf{W}}$ is the weights/coefficients of the linear regression.
 
-## Ridge regression
+### Ridge regression
 
 Ridge Regression is a linear regression variant that introduces regularization to prevent overfitting. The objective function for ridge regression is given by ,
 
 $$ W = \frac{1}{2s} \left\| Xw - y \right\|^2 + \frac{\alpha}{2} \left\| w \right\|^2 $$
 
-## KNN Regression
+### KNN Regression
 
 In k-NN regression, the prediction for a new data point is determined by averaging the target values of its k nearest neighbours. For each test point, the Euclidean distance to all training points is calculated by,
 
