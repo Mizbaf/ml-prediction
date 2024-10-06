@@ -16,16 +16,16 @@ The models were trained using a combination of the wine features provided in the
 ## Linear Regression
 
 The normal equation used to calculate the coefficients in linear regression is as follows:
-$$
-\mathbf{X}^{\top}\mathbf{X} \hat{\mathbf{W}} = \mathbf{X}^{\top}\mathbf{Y}
-$$
+
+$$ \mathbf{X}^{\top}\mathbf{X} \hat{\mathbf{W}} = \mathbf{X}^{\top}\mathbf{Y} $$
+
 Here $\mathbf{X}$  is the matrix of feature values.
 and $\mathbf{Y}$ is the vector of target values, while $\hat{\mathbf{W}}$ is the weights/coefficients of the linear regression.
 
 The **Mean Squared Error(MSE)** is calculated using the formula,
-$$
-\mathrm{MSE} = \frac{1}{2s} \left\|\mathbf{X}\mathbf{W} - \mathbf{Y} \right\|^2,
-$$
+
+$$ \mathrm{MSE} = \frac{1}{2s} \left\|\mathbf{X}\mathbf{W} - \mathbf{Y} \right\|^2, $$
+
 where $\mathbf{X}$  is the matrix of feature values.
 and $\mathbf{Y}$ is the vector of target values, while $\hat{\mathbf{W}}$ is the weights/coefficients of the linear regression.
 
@@ -38,6 +38,7 @@ $$ W = \frac{1}{2s} \left\| Xw - y \right\|^2 + \frac{\alpha}{2} \left\| w \righ
 ## KNN Regression
 
 In k-NN regression, the prediction for a new data point is determined by averaging the target values of its k nearest neighbours. For each test point, the Euclidean distance to all training points is calculated by,
+
 $$ d(x_1, x_2) = \sqrt{\sum_{i=1}^{n} (x_{1i} - x_{2i})^2} $$
 
 
